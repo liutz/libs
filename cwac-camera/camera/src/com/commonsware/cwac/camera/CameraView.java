@@ -104,9 +104,10 @@ public class CameraView extends ViewGroup implements AutoFocusCallback {
                 try {
                     camera = Camera.open(cameraId);
 
-                    if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
-                        onOrientationChange.enable();
-                    }
+                    // if (getActivity().getRequestedOrientation() !=
+                    // ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
+                    // onOrientationChange.enable();
+                    // }
 
                     setCameraDisplayOrientation();
 
@@ -235,7 +236,7 @@ public class CameraView extends ViewGroup implements AutoFocusCallback {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
             onOrientationChange.enable();
         } else {
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            // getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
             onOrientationChange.disable();
         }
     }
@@ -546,10 +547,13 @@ public class CameraView extends ViewGroup implements AutoFocusCallback {
 
         Camera.getCameraInfo(cameraId, info);
 
-        if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
-            outputOrientation = getCameraPictureRotation(getActivity().getWindowManager().getDefaultDisplay()
-                            .getOrientation());
-        } else if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+        /*
+         * if (getActivity().getRequestedOrientation() !=
+         * ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) { outputOrientation =
+         * getCameraPictureRotation
+         * (getActivity().getWindowManager().getDefaultDisplay()
+         * .getOrientation()); } else
+         */if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
             outputOrientation = (360 - displayOrientation) % 360;
         } else {
             outputOrientation = displayOrientation;
